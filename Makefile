@@ -125,7 +125,7 @@ clean-installer:
 $(foreach target,$(TARGETS),$(eval $(target): $$($(target))))
 
 
-$(env-runtime): $(cygwin-runtime) $(sage-runtime) $(cygwin-runtime-extras)
+$(env-runtime): $(env-build) $(cygwin-runtime) $(sage-runtime) $(cygwin-runtime-extras)
 	$(TOOLS)/fixup-symlinks $(ENV_RUNTIME_DIR) > $(ENV_RUNTIME_DIR)/etc/symlinks.lst
 	@touch $@
 
@@ -236,6 +236,9 @@ $(SAGE_STARTED): $(SAGE_MAKEFILE)
 	# intall sagelib optional extensions that use those packages
 	$(SUBCYG) "$(ENV_BUILD_DIR)" \
 		"cd $(SAGE_ROOT) && $(SAGE_ENVVARS) ./sage -i $(SAGE_OPTIONAL_PACKAGES) && make build"
+	# Re-touch sage-started.txt since running `make build` again can cause
+	# the Sage Makefile to be updated IIUC
+	touch $@
 
 
 $(SAGE_MAKEFILE): $(SAGE_CONFIGURE)
