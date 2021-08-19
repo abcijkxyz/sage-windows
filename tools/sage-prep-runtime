@@ -63,7 +63,11 @@ find . -type f \( -name '*.exe' -o -name '*.dll' \) \
 
 # Move stupid, misnamed giac docs: the directory name ends with a space when it
 # shouldn't, and InnoSetup has trouble with this
-BROKEN_GIAC_DOC_DIR='local/share/doc/giac/fr '
+# Update: As of Sage 9.3, the version of the giac docs is now even more broken,
+# containing both an 'fr' directory *and* an 'fr ' directory.  Rather than try
+# to move it, just delete these docs entirely, as I doubt anyone is going to go
+# looking for them in their Sage Windows install.
+BROKEN_GIAC_DOC_DIR='local/share/doc/giac'
 if [ -d "$BROKEN_GIAC_DOC_DIR" ]; then
-    mv "$BROKEN_GIAC_DOC_DIR" local/share/doc/giac/fr
+    rm -rf "$BROKEN_GIAC_DOC_DIR"
 fi
