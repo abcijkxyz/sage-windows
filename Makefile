@@ -23,7 +23,7 @@ ENVS?=envs
 STAMPS?=.stamps
 
 # Path to the Inno Setup executable
-ISCC?="/cygdrive/c/Program Files (x86)/Inno Setup 5/ISCC.exe"
+ISCC?="/cygdrive/c/Program Files (x86)/Inno Setup 6/ISCC.exe"
 
 ################################################################################
 

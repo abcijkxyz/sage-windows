@@ -4,7 +4,11 @@ Changelog for the Windows Installer
 0.6.3 (unreleased)
 ------------------
 
-* Nothing changed yet.
+* No user-facing changes.
+
+* Minor Makefile fixes.
+
+* Updates to use InnoSetup 6 which is now the most current.
 
 
 0.6.2 (2021-01-05)

@@ -78,7 +78,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 ArchitecturesAllowed={#MyArchitecturesAllowed}
 ArchitecturesInstallIn64BitMode=x64
-DefaultDirName={pf}\{#SageGroupName}
+DefaultDirName={commonpf}\{#SageGroupName}
 DefaultGroupName={#SageGroupName}
 DisableProgramGroupPage=yes
 DisableWelcomePage=no
@@ -202,7 +202,7 @@ begin
         UserInstall := True;
     end
     else begin
-        WizardForm.DirEdit.Text := ExpandConstant('{pf}\{#SageGroupName}');
+        WizardForm.DirEdit.Text := ExpandConstant('{commonpf}\{#SageGroupName}');
         UserInstall := False;
     end;
 
@@ -223,13 +223,13 @@ begin
 
     UserInstall := Boolean(
         StrToInt(
-            GetPreviousData('UserInstall', IntToStr(Integer(not IsAdminLoggedOn())))));
+            GetPreviousData('UserInstall', IntToStr(Integer(not IsAdminInstallMode())))));
 
     with Page do
     begin
         CheckListBox.Checked[0] := UserInstall;
         CheckListBox.Checked[1] := (not UserInstall);
-        CheckListBox.ItemEnabled[1] := IsAdminLoggedOn();
+        CheckListBox.ItemEnabled[1] := IsAdminInstallMode();
         OnNextButtonClick := @ProcessInstallModeSelectPage;
     end;
 end;
@@ -274,7 +274,7 @@ end;
 
 procedure InitializeWizard();
 begin
-    UserInstall := not IsAdminLoggedOn();
+    UserInstall := not IsAdminInstallMode();
     CreateInstallModeSelectPage();
     CreateUserHomeDirSelectPage();
 end;
