@@ -1,7 +1,7 @@
 Changelog for the Windows Installer
 ===================================
 
-0.6.3 (unreleased)
+0.6.3 (2021-08-25)
 ------------------
 
 * No user-facing changes.
